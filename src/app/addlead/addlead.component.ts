@@ -3,6 +3,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { ToasterserviceService } from '../toasterservice.service';
 import { Router } from '@angular/router';
 import { ServicesService } from '../services.service';
+import { faPencilAlt  } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-addlead',
@@ -23,6 +24,8 @@ export class AddleadComponent implements OnInit {
     this.serv.getAllUsers().subscribe((data) => {
       this.displayLoader = false;
       this.employees = data['users'];
+      console.log("addlead-51", this.employees);
+      console.log("addlead-52", data["users"]);
     }, (err) => {
       this.displayLoader = false;
       this.showDanger(err.error['message']);
@@ -45,32 +48,32 @@ export class AddleadComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  createLead(){
-    if(this.leadDetails.valid){
-      this.displayLoader=true;
-      this.leadDetails.value.ownerName=this.employees[this.leadDetails.value.owner].firstName+" "+this.employees[this.leadDetails.value.owner].lastName;
-      this.leadDetails.value.owner=this.employees[this.leadDetails.value.owner].email;
-      console.log("createLead function",this.leadDetails);
-      this.serv.createLead(this.leadDetails.value).subscribe((data)=>{
-        this.displayLoader=false;
+  createLead() {
+    if (this.leadDetails.valid) {
+      this.displayLoader = true;
+      this.leadDetails.value.ownerName = this.employees[this.leadDetails.value.owner].firstName + " " + this.employees[this.leadDetails.value.owner].lastName;
+      this.leadDetails.value.owner = this.employees[this.leadDetails.value.owner].email;
+      console.log("createLead function", this.leadDetails);
+      this.serv.createLead(this.leadDetails.value).subscribe((data) => {
+        this.displayLoader = false;
         this.showSuccess(data['message']);
         this.router.navigate(['/dashboard/leads']);
-      },(err)=>{
-        this.displayLoader=false;
+      }, (err) => {
+        this.displayLoader = false;
         this.showDanger(err.error['message']);
       })
-    }else{
+    } else {
       this.showDanger('Enter all required details');
     }
   }
   showStandard(msg) {
     this.toastService.show(msg);
   }
-  
+
   showSuccess(msg) {
     this.toastService.show(msg, { classname: 'bg-success text-light', delay: 5000 });
   }
-  
+
   showDanger(msg) {
     this.toastService.show(msg, { classname: 'bg-danger text-light', delay: 8000 });
   }

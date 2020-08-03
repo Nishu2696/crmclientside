@@ -20,6 +20,18 @@ import { ToastsComponent } from './toasts/toasts.component';
 import { FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AuthGuard } from "./auth.guard";
+import { ContactsComponent } from './contacts/contacts.component';
+import { AddcontactsComponent } from './addcontacts/addcontacts.component';
+import { UpdatecontactsComponent } from './updatecontacts/updatecontacts.component';
+import { AddusersComponent } from './addusers/addusers.component';
+import { UsersComponent } from './users/users.component';
+import { HomeusersComponent } from './homeusers/homeusers.component';
+import { ConfirmorderComponent } from './confirmorder/confirmorder.component';
+import { ManagerComponent } from './manager/manager.component';
+import { ProfileComponent } from './profile/profile.component';
+import { UserhomeComponent } from './userhome/userhome.component';
+import { ServicerequestComponent } from './servicerequest/servicerequest.component';
+import { AddservicerequestComponent } from './addservicerequest/addservicerequest.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +45,19 @@ import { AuthGuard } from "./auth.guard";
     LeadsComponent,
     AddleadComponent,
     UpdateleadComponent,
-    ToastsComponent
+    ToastsComponent,
+    ContactsComponent,
+    AddcontactsComponent,
+    UpdatecontactsComponent,
+    AddusersComponent,
+    UsersComponent,
+    HomeusersComponent,
+    ConfirmorderComponent,
+    ManagerComponent,
+    ProfileComponent,
+    UserhomeComponent,
+    ServicerequestComponent,
+    AddservicerequestComponent
   ],
   imports: [
     BrowserModule,

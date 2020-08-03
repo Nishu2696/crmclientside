@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { ServicesService } from '../services.service';
 import { Router } from '@angular/router';
@@ -32,10 +32,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
     document.body.className = "";
   }
+
   login() {
     if (this.credentials.valid) {
       console.log("classname",document.body.className);
@@ -47,7 +46,7 @@ export class LoginComponent implements OnInit {
         this.showSuccess(data["message"]);
         this.serv.setToken(data['token']);
         this.serv.setEmail(data['email']);
-        this.serv.userType = data['userType'];
+        this.serv.setUserData(data);
         this.router.navigate(['/dashboard']);
       }, (err) => {
         this.displayLoader = false;
